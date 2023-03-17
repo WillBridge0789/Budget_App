@@ -26,18 +26,17 @@ class Category:
         print(self.amount)
         
 
-    def transfer(self, transaction, name):
-        if transaction > name.amount:
-            print('Transaction STILL Denied')
-        elif transaction <= name.amount:
-            name.amount += transaction
-        if transaction > self.amount:
-            print('Feel broke yet?')
-        elif transaction <= self.amount:
-            self.amount -= transaction
-        print(f'${transaction}.00 has been transfered to {self.amount}')
+    def transfer(self, transfer_amount, name):
+        if transfer_amount <= name.amount:
+            name.amount += transfer_amount
+        elif transfer_amount > name.amount and transfer_amount > self.amount:
+            print('Transaction.....DENIED!')
+        # if transfer_amount > self.amount:
+        if transfer_amount <= self.amount:
+            self.amount -= transfer_amount
+        print(f'${transfer_amount}.00 has been transfered to {name.name}')
         print(f'${initial_deposit.amount}.00 initial deposit amount after transfer')
-        print(f'${name.amount}.00')
+        print(f'${self.amount}.00')
 
         pass
 
@@ -52,9 +51,10 @@ initial_deposit = Category('Intial Deposit')
 rent = Category('Rent')
 
 initial_deposit.deposit(5000, 'Deposit')
-initial_deposit.withdrawal(2500, 'Withdrawal')
+initial_deposit.withdrawal(2000, 'Withdraw')
 initial_deposit.get_balance()
-initial_deposit.transfer(1250, rent)
+initial_deposit.transfer(1200, rent)
+rent.transfer(600, initial_deposit)
 
 
 
