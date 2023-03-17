@@ -1,16 +1,60 @@
 class Category:
-    def __init__(self):
+    def __init__(self, name):
         self.name = name
         self.ledger = []
-    def withdraw(self, wit_amount, wit_description):
-        
-        print(f'{self.name} you withdrew ${wit_amount}.')
+        self.amount = 0
+        self.description = ""
 
-    def deposit(self, dep_amount, dep_description):
-        self.dep_amount = 0
-        self.dep_description = ""
+    def deposit(self, transaction, description):
+        if description == None:
+            description = ""
+        self.amount += transaction
+        print(self.amount)
+        self.ledger.append({'Amount': transaction, 'Description': description})
+        print(self.ledger)
+
+    def withdrawal(self, transaction, description):
+        if transaction > self.amount:
+            print('Transaction Denied')
+        elif transaction <= self.amount:
+            self.amount -= transaction
+            print(self.amount)
+        self.ledger.append({'Amount': -abs(transaction), 'Description': description})
+        print(self.ledger)
+
     def get_balance(self):
+        print(self.amount)
+        
+
+    def transfer(self, transaction, name):
+        if transaction > name.amount:
+            print('Transaction STILL Denied')
+        elif transaction <= name.amount:
+            name.amount += transaction
+        if transaction > self.amount:
+            print('Feel broke yet?')
+        elif transaction <= self.amount:
+            self.amount -= transaction
+        print(f'${transaction}.00 has been transfered to {self.amount}')
+        print(f'${initial_deposit.amount}.00 initial deposit amount after transfer')
+        print(f'${name.amount}.00')
+
         pass
+
+    def check_funds(self):
+        pass
+
+    def __str__(self):
+        pass
+
+
+initial_deposit = Category('Intial Deposit')
+rent = Category('Rent')
+
+initial_deposit.deposit(5000, 'Deposit')
+initial_deposit.withdrawal(2500, 'Withdrawal')
+initial_deposit.get_balance()
+initial_deposit.transfer(1250, rent)
 
 
 
@@ -28,3 +72,4 @@ class Category:
         # returns current_balance of budget based on DEPOSIT's and WITHDRAW's that occured
 
     # transfer
+    
