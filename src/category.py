@@ -49,12 +49,19 @@ class Category:
 
 initial_deposit = Category('Intial Deposit')
 rent = Category('Rent')
+utilities = Category('Utilities')
+car_payment = Category('Car Payment')
+savings = Category('Savings')
 
-initial_deposit.deposit(5000, 'Deposit')
-initial_deposit.withdrawal(2000, 'Withdraw')
+initial_deposit.deposit (int(input('How much would you like to deposit? ')), 'Deposit')
+initial_deposit.withdrawal(int(input('How much would you like to withdraw? ')), 'Withdraw')
 initial_deposit.get_balance()
 initial_deposit.transfer(1200, rent)
-rent.transfer(600, initial_deposit)
+initial_deposit.transfer(500, utilities)
+initial_deposit.transfer(550, car_payment)
+initial_deposit.transfer(1000, savings)
+initial_deposit.get_balance()
+# rent.transfer(600, initial_deposit)
 
 
 
